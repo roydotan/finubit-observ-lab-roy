@@ -1,7 +1,7 @@
 import requests
 import time
 import threading
-
+import random
 
 class LoadTester:
     def __init__(self, front_url, duration=100):
@@ -12,7 +12,7 @@ class LoadTester:
     def send_requests(self):
         while time.time() - self.start_time < self.duration:
             requests.post(f"{self.front_url}/deposit", json={"amount": 100})
-            requests.post(f"{self.front_url}/withdraw", json={"amount": 50})
+            requests.post(f"{self.front_url}/withdraw", json={"amount": random.randint(75, 150)})
             time.sleep(5)
 
     def start(self):
